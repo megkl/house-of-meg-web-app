@@ -1,9 +1,8 @@
-import Document, { Html, Head, Main, NextScript } from "next/document";
-import React from "react";
-import createEmotionServer from "@emotion/server/types/create-instance";
-import createCache from "@emotion/cache";
+import React from 'react';
+import Document, { Head, Html, Main, NextScript } from 'next/document';
+import createEmotionServer from '@emotion/server/create-instance';
+import createCache from '@emotion/cache';
 
-//code to change the way we render the document to accept material UI objects
 export default class MyDocument extends Document {
   render() {
     return (
@@ -24,20 +23,21 @@ export default class MyDocument extends Document {
 }
 
 MyDocument.getInitialProps = async (ctx) => {
-  const originalRenderPage = ctx.originalRenderPage;
-  const cache = createCache({ key: "css" });
+  const originalRenderPage = ctx.renderPage;
+  const cache = createCache({ key: 'css' });
   const { extractCriticalToChunks } = createEmotionServer(cache);
-  ctx.originalRenderPage = () =>
+  ctx.renderPage = () =>
     originalRenderPage({
+      // eslint-disable-next-line react/display-name
       enhanceApp: (App) => (props) => <App emotionCache={cache} {...props} />,
     });
-
   const initialProps = await Document.getInitialProps(ctx);
   const emotionStyles = extractCriticalToChunks(initialProps.html);
   const emotionStyleTags = emotionStyles.styles.map((style) => (
     <style
-      data-emotion={`$style.key} ${style.ids.join(" ")}`}
+      data-emotion={`${style.key} ${style.ids.join(' ')}`}
       key={style.key}
+      // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{ __html: style.css }}
     />
   ));
