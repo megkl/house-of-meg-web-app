@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import { useState, useEffect } from "react";
 import NextLink from "next/link";
-import Layout from "@/components/layout";
+import Layout from "@/components/Layout";
 import classes from "@/utils/classes";
 import Image from "next/image";
 import { urlFor } from "@/utils/image";

@@ -1,4 +1,4 @@
-import Layout from "../components/layout";
+import Layout from "../components/Layout";
 import { useEffect, useState } from "react";
 import client from '../utils/client';
 import { CircularProgress, Alert, Grid } from "@mui/material";
