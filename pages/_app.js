@@ -1,4 +1,5 @@
 import "@/styles/globals.css";
+import { StoreProvider } from "@/utils/store";
 import createCache from "@emotion/cache";
 import { CacheProvider } from "@emotion/react";
 
@@ -11,7 +12,9 @@ function MyApp({
 }) {
   return (
     <CacheProvider value={emotionCache}>
+      <StoreProvider>
       <Component {...pageProps} />
+      </StoreProvider>
     </CacheProvider>
   );
 }
