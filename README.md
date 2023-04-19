@@ -42,11 +42,26 @@ Create React Context
 
     define Context, Store and reducer
     set darkMode flag
-    use it on layout
+    use it on layout with a switch button
 
 Implement Add to cart
 
     define cart in context
     dispatch add to cart action
     set click event handler for button
+
+Create Cart Screen
+
+    get cart items from context
+    render in the screen
+    show cart items in the header menu
+    implement add to cart in home page
+
+Display Cart Badge In Header Menu
+
+    add cart link to header
+    show cart items badge in header
+    implement add to cart in home page
+
+
 
