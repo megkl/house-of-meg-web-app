@@ -21,9 +21,11 @@ import { urlFor, urlForThumbnail } from "@/utils/image";
 import { Store } from "@/utils/store";
 import { useSnackbar } from "notistack";
 import axios from 'axios';
+import { useRouter } from "next/router";
 
 
 export default function ProductScreen(props) {
+  const router = useRouter();
   const { slug } = props;
   const { enqueueSnackbar} = useSnackbar()
   const { state: { cart}, dispatch} = useContext(Store);
@@ -66,6 +68,7 @@ export default function ProductScreen(props) {
       quantity,
     }});
     enqueueSnackbar(`${product.name} added to the cart`, {variant: 'success'});
+    router.push('/cart')
   }
 
   return (
